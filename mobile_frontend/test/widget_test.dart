@@ -1,18 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_frontend/main.dart';
 
 void main() {
-  testWidgets('App generation message displayed', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('SmartCalc loads main screen and shows basic controls', (tester) async {
+    await tester.pumpWidget(const SmartCalcApp());
+    await tester.pumpAndSettle();
 
-    expect(find.text('mobile_frontend App is being generated...'), findsOneWidget);
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  });
+    // Expect SmartCalc title in display panel
+    expect(find.text('SmartCalc'), findsOneWidget);
 
-  testWidgets('App bar has correct title', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
-
-    expect(find.text('mobile_frontend'), findsOneWidget);
+    // Expect some keypad buttons
+    expect(find.text('7'), findsOneWidget);
+    expect(find.text('sin'), findsOneWidget);
+    expect(find.text('='), findsOneWidget);
   });
 }
